@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .s-tab {
+            position: relative;
+            height: 38px;
+            background: rgb(248, 248, 248);
+            margin: 55px auto;
+            line-height: 36px;
+            padding-left: 121px;
+            border-top: 1px solid rgb(235, 235, 235);
+
+        }
+
+        .s-tab .tab-wapper {
+            position: relative;
+            font-size: 0;
+        }
+
+        .s-tab .tab-wapper a {
+            display: inline-block;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 0 13px;
+            color: #666;
+            text-align: center;
+
+        }
+
+        .s-tab .tab-wapper a:hover {
+            color: #000;
+        }
+
+        .s-tab .tab-wapper a.active-tab {
+            font-weight: 700;
+            color: rgb(50, 50, 50);
+
+        }
+
+        .active-bar {
+            position: absolute;
+            left: 0;
+            bottom: 3px;
+            width: 54px;
+            height: 2px;
+            background-color: rgb(51, 136, 255);
+            z-index: 11;
+            /* transform: translateX(54px); */
+            transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .s-tab::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 2px;
+            /* background: #e4e7ed; */
+            left: 0;
+            top: 100%;
+            bottom: 0;
+        }
+
+        /* 标签选项对应的内容的部分 */
+        .c-content {
+            border: 1px solid #e3e3e3;
+            width: 500px;
+            height: 200px;
+            border-radius: 3px;
+            margin-top: 30px;
+            font-size: 12px;
+            padding: 20px 20px 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="s-tab">
+        <div class="tab-wapper">
+            <a href="#" class="active-tab">网页</a>
+            <a href="#">资讯</a>
+            <a href="#">视频</a>
+            <a href="#">图片</a>
+            <a href="#">知道</a>
+            <a href="#">文库</a>
+            <a href="#">贴吧</a>
+            <a href="#">采购</a>
+            <a href="#">地图</a>
+            <a href="#">更多更多更多»</a>
+            <div class="active-bar"></div>
+        </div>
+        <div class="c-content">
+            “顽皮狗旗下的《美国末日0》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(Gustavo
+            Santaolalla)制作,可以说是一脉相承,味道不变。”
+        </div>
+
+    </div>
+    <script>
+        //  下划线动画   需要得到两个值  1 标签的宽度  2标签距离左边顶点的像素距离值
+
+        (function () { //块级作用域 命名空间  es6  
+
+            var  contentArr = [
+                ' “顽皮狗旗下的《美国末日0》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日1》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日2》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日3》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日4》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日5》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日6》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日7》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                ' “顽皮狗旗下的《美国末日8》虽然还没公布具体发售日期,但仍旧牵动著不少粉丝的心。今天,顽皮狗在官方Twitter上放出了《美国末日2》的主题曲,本次主题曲仍是由上代游戏作曲家古斯塔沃·桑多拉拉(GustavoSantaolalla)制作,可以说是一脉相承,味道不变。”',
+                '没有更多了。。。。'
+            ]
+
+            var contentNode = document.getElementsByClassName('c-content')[0];
+            var activeBar =  document.getElementsByClassName('active-bar')[0];
+            var tabs = document.getElementsByTagName('a');
+            var len = tabs.length;
+            for (var i = 0; i < len; i++) {
+                tabs[i].index = i;
+                tabs[i].addEventListener('click', clickFn)
+            }
+
+            function clickFn(e) {
+
+                for (var i = 0; i < len; i++) {
+                    tabs[i].className = '';
+                }
+                //让所有的a标签的类名取消
+
+                this.className = 'active-tab';
+            // 得到点击的标签的距离左边0点的位置距离  
+                // console.log(this.offsetLeft,this.offsetWidth)//获取两个值
+                console.log(this.index)//获得对应的索引值
+               changeBar(this.offsetLeft,this.offsetWidth);//下划线变换
+               //更换内容
+               contentNode.innerHTML = contentArr[this.index];
+
+
+            }
+            function changeBar(l,w){
+                activeBar.style.transform = 'translateX('+ l +'px)';
+                activeBar.style.width = w + 'px';
+            }
+
+
+        })()
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
